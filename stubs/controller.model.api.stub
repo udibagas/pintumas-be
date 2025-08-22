@@ -22,7 +22,7 @@ class {{ class }} extends Controller
      */
     public function store({{ storeRequest }} $request)
     {
-        return {{ model }}::create($request->all());
+        return {{ model }}::create($request->validated());
     }
 
     /**
@@ -38,7 +38,7 @@ class {{ class }} extends Controller
      */
     public function update({{ updateRequest }} $request, {{ model }} ${{ modelVariable }})
     {
-        ${{ modelVariable }}->update($request->all());
+        ${{ modelVariable }}->update($request->validated());
         return ${{ modelVariable }};
     }
 
