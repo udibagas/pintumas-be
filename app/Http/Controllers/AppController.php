@@ -14,7 +14,7 @@ class AppController extends Controller
     public function index()
     {
         $data = App::paginate();
-        return $data;
+        return response()->json($data);
     }
 
     /**
@@ -22,7 +22,7 @@ class AppController extends Controller
      */
     public function store(StoreAppRequest $request)
     {
-        return App::create($request->all());
+        return response()->json(App::create($request->validated()), 201);
     }
 
     /**
@@ -30,7 +30,7 @@ class AppController extends Controller
      */
     public function show(App $app)
     {
-        return $app;
+        return response()->json($app);
     }
 
     /**
@@ -38,8 +38,8 @@ class AppController extends Controller
      */
     public function update(UpdateAppRequest $request, App $app)
     {
-        $app->update($request->all());
-        return $app;
+        $app->update($request->validated());
+        return response()->json($app);
     }
 
     /**
@@ -48,6 +48,6 @@ class AppController extends Controller
     public function destroy(App $app)
     {
         $app->delete();
-        return $app;
+        return response()->json(null, 204);
     }
 }

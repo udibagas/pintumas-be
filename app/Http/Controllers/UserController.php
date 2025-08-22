@@ -14,7 +14,7 @@ class UserController extends Controller
     public function index()
     {
         $data = User::paginate();
-        return $data;
+        return response()->json($data);
     }
 
     /**
@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        return User::create($request->validated());
+        return response()->json(User::create($request->validated()), 201);
     }
 
     /**
@@ -30,7 +30,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return $user;
+        return response()->json($user);
     }
 
     /**
@@ -39,7 +39,7 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, User $user)
     {
         $user->update($request->validated());
-        return $user;
+        return response()->json($user);
     }
 
     /**
@@ -48,6 +48,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return $user;
+        return response()->json(null, 204);
     }
 }

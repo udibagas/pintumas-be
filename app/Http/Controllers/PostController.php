@@ -13,15 +13,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $data = Post::with(['user', 'comments'])->paginate();
+        return response()->json($data);
     }
 
     /**
@@ -29,7 +22,7 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        //
+        return response()->json(Post::create($request->validated()), 201);
     }
 
     /**
@@ -37,15 +30,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Post $post)
-    {
-        //
+        return response()->json($post);
     }
 
     /**
@@ -53,7 +38,8 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        $post->update($request->validated());
+        return response()->json($post);
     }
 
     /**
@@ -61,6 +47,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return response()->json(null, 204);
     }
 }

@@ -14,7 +14,7 @@ class DepartmentController extends Controller
     public function index()
     {
         $data = Department::paginate();
-        return $data;
+        return response()->json($data);
     }
 
     /**
@@ -22,7 +22,7 @@ class DepartmentController extends Controller
      */
     public function store(StoreDepartmentRequest $request)
     {
-        return Department::create($request->all());
+        return response()->json(Department::create($request->validated()), 201);
     }
 
     /**
@@ -30,7 +30,7 @@ class DepartmentController extends Controller
      */
     public function show(Department $department)
     {
-        return $department;
+        return response()->json($department);
     }
 
     /**
@@ -38,8 +38,8 @@ class DepartmentController extends Controller
      */
     public function update(UpdateDepartmentRequest $request, Department $department)
     {
-        $department->update($request->all());
-        return $department;
+        $department->update($request->validated());
+        return response()->json($department);
     }
 
     /**
@@ -48,6 +48,6 @@ class DepartmentController extends Controller
     public function destroy(Department $department)
     {
         $department->delete();
-        return $department;
+        return response()->json(null, 204);
     }
 }

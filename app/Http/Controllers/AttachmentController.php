@@ -13,15 +13,7 @@ class AttachmentController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return response()->json(Attachment::all());
     }
 
     /**
@@ -29,7 +21,7 @@ class AttachmentController extends Controller
      */
     public function store(StoreAttachmentRequest $request)
     {
-        //
+        return response()->json(Attachment::create($request->validated()), 201);
     }
 
     /**
@@ -37,15 +29,7 @@ class AttachmentController extends Controller
      */
     public function show(Attachment $attachment)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Attachment $attachment)
-    {
-        //
+        return response()->json($attachment);
     }
 
     /**
@@ -53,7 +37,8 @@ class AttachmentController extends Controller
      */
     public function update(UpdateAttachmentRequest $request, Attachment $attachment)
     {
-        //
+        $attachment->update($request->validated());
+        return response()->json($attachment);
     }
 
     /**
@@ -61,6 +46,7 @@ class AttachmentController extends Controller
      */
     public function destroy(Attachment $attachment)
     {
-        //
+        $attachment->delete();
+        return response()->json(null, 204);
     }
 }

@@ -13,15 +13,7 @@ class SupplyChainController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return response()->json(SupplyChain::all());
     }
 
     /**
@@ -29,7 +21,7 @@ class SupplyChainController extends Controller
      */
     public function store(StoreSupplyChainRequest $request)
     {
-        //
+        return response()->json(SupplyChain::create($request->validated()), 201);
     }
 
     /**
@@ -37,15 +29,7 @@ class SupplyChainController extends Controller
      */
     public function show(SupplyChain $supplyChain)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(SupplyChain $supplyChain)
-    {
-        //
+        return response()->json($supplyChain);
     }
 
     /**
@@ -53,7 +37,8 @@ class SupplyChainController extends Controller
      */
     public function update(UpdateSupplyChainRequest $request, SupplyChain $supplyChain)
     {
-        //
+        $supplyChain->update($request->validated());
+        return response()->json($supplyChain);
     }
 
     /**
@@ -61,6 +46,7 @@ class SupplyChainController extends Controller
      */
     public function destroy(SupplyChain $supplyChain)
     {
-        //
+        $supplyChain->delete();
+        return response()->json(null, 204);
     }
 }

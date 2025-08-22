@@ -13,15 +13,7 @@ class RegulationController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return response()->json(Regulation::all());
     }
 
     /**
@@ -29,7 +21,7 @@ class RegulationController extends Controller
      */
     public function store(StoreRegulationRequest $request)
     {
-        //
+        return response()->json(Regulation::create($request->validated()), 201);
     }
 
     /**
@@ -37,15 +29,7 @@ class RegulationController extends Controller
      */
     public function show(Regulation $regulation)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Regulation $regulation)
-    {
-        //
+        return response()->json($regulation);
     }
 
     /**
@@ -53,7 +37,8 @@ class RegulationController extends Controller
      */
     public function update(UpdateRegulationRequest $request, Regulation $regulation)
     {
-        //
+        $regulation->update($request->validated());
+        return response()->json($regulation);
     }
 
     /**
@@ -61,6 +46,7 @@ class RegulationController extends Controller
      */
     public function destroy(Regulation $regulation)
     {
-        //
+        $regulation->delete();
+        return response()->json(null, 204);
     }
 }

@@ -13,15 +13,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return response()->json(Service::all());
     }
 
     /**
@@ -29,7 +21,7 @@ class ServiceController extends Controller
      */
     public function store(StoreServiceRequest $request)
     {
-        //
+        return response()->json(Service::create($request->validated()), 201);
     }
 
     /**
@@ -37,15 +29,7 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Service $service)
-    {
-        //
+        return response()->json($service);
     }
 
     /**
@@ -53,7 +37,8 @@ class ServiceController extends Controller
      */
     public function update(UpdateServiceRequest $request, Service $service)
     {
-        //
+        $service->update($request->validated());
+        return response()->json($service);
     }
 
     /**
@@ -61,6 +46,7 @@ class ServiceController extends Controller
      */
     public function destroy(Service $service)
     {
-        //
+        $service->delete();
+        return response()->json(null, 204);
     }
 }

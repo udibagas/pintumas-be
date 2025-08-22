@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreAnnouncementRequest;
+use App\Http\Requests\StoreAttachmentRequest;
 use App\Http\Requests\UpdateAnnouncementRequest;
 use App\Models\Announcement;
+use App\Models\Attachment;
 
 class AnnouncementController extends Controller
 {
@@ -13,15 +15,8 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        $data = Announcement::with(['user', 'department'])->get();
+        return response()->json($data);
     }
 
     /**
@@ -29,7 +24,7 @@ class AnnouncementController extends Controller
      */
     public function store(StoreAnnouncementRequest $request)
     {
-        //
+        return response()->json(Announcement::create($request->validated()), 201);
     }
 
     /**
@@ -37,15 +32,7 @@ class AnnouncementController extends Controller
      */
     public function show(Announcement $announcement)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Announcement $announcement)
-    {
-        //
+        return response()->json($announcement);
     }
 
     /**
@@ -53,7 +40,8 @@ class AnnouncementController extends Controller
      */
     public function update(UpdateAnnouncementRequest $request, Announcement $announcement)
     {
-        //
+        $announcement->update($request->validated());
+        return response()->json($announcement);
     }
 
     /**
@@ -61,6 +49,7 @@ class AnnouncementController extends Controller
      */
     public function destroy(Announcement $announcement)
     {
-        //
+        $announcement->delete();
+        return response()->json(null, 204);
     }
 }

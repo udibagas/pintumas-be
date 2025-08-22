@@ -13,15 +13,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return response()->json(Tag::all());
     }
 
     /**
@@ -29,7 +21,7 @@ class TagController extends Controller
      */
     public function store(StoreTagRequest $request)
     {
-        //
+        return response()->json(Tag::create($request->validated()), 201);
     }
 
     /**
@@ -37,7 +29,7 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        //
+        return response()->json($tag);
     }
 
     /**
@@ -45,7 +37,7 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        //
+        return response()->json($tag);
     }
 
     /**
@@ -53,7 +45,8 @@ class TagController extends Controller
      */
     public function update(UpdateTagRequest $request, Tag $tag)
     {
-        //
+        $tag->update($request->validated());
+        return response()->json($tag);
     }
 
     /**
@@ -61,6 +54,7 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+        return response()->json(null, 204);
     }
 }
