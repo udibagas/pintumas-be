@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('post_id')->constrained()->onDelete('cascade');
             $table->string('status')->default('PENDING'); // PENDING, APPROVED, REJECTED, etc.
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->foreignIdFor(Department::class, 'department_id')->constrained()->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

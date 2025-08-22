@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('icon')->nullable();
             $table->foreignIdFor(Department::class)->constrained()->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

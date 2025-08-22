@@ -24,6 +24,7 @@ return new class extends Migration
             $table->foreignIdFor(Department::class)->constrained()->onDelete('cascade');
             $table->foreignIdFor(User::class)->constrained()->onDelete('cascade'); // uploader
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('youtube')->nullable();
             $table->string('linkedin')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
