@@ -18,8 +18,8 @@ class App extends Model
         'department_id',
     ];
 
-    public function department()
+    public function departments()
     {
-        return $this->belongsTo(Department::class);
+        return $this->belongsToMany(Department::class, 'department_apps');
     }
 }

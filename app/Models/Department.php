@@ -23,11 +23,6 @@ class Department extends Model
         'linkedin',
     ];
 
-    public function apps()
-    {
-        return $this->hasMany(App::class);
-    }
-
     public function services()
     {
         return $this->hasMany(Service::class);
@@ -46,5 +41,10 @@ class Department extends Model
     public function supplyChains()
     {
         return $this->hasMany(SupplyChain::class);
+    }
+
+    public function apps()
+    {
+        return $this->belongsToMany(App::class, 'department_apps');
     }
 }
