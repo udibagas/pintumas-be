@@ -32,17 +32,17 @@ Route::post('/token', function (Request $request) {
 Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResources([
+        'announcement' => AnnouncementController::class,
         'app' => AppController::class,
-        'department' => DepartmentController::class,
-        'user' => UserController::class,
-        'service' => ServiceContainer::class,
-        'tag' => TagController::class,
-        'regulation' => RegulationController::class,
-        'post' => PostController::class,
         'attachment' => AttachmentController::class,
         'comment' => CommentController::class,
-        'announcement' => AnnouncementController::class,
-        'supplyChain' => SupplyChainController::class
+        'department' => DepartmentController::class,
+        'post' => PostController::class,
+        'regulation' => RegulationController::class,
+        'service' => ServiceContainer::class,
+        'supplyChain' => SupplyChainController::class,
+        'tag' => TagController::class,
+        'user' => UserController::class,
     ]);
 
     Route::middleware('role:ADMIN')->group(function () {
