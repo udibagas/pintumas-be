@@ -35,4 +35,9 @@ class Regulation extends Model
     {
         return $this->morphOne(Attachment::class, 'attachable');
     }
+
+    public function services()
+    {
+        return $this->belongsToMany(Service::class, 'service_regulations');
+    }
 }

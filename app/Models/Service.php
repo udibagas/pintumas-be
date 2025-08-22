@@ -25,4 +25,9 @@ class Service extends Model
     {
         return $this->hasMany(SupplyChain::class);
     }
+
+    public function regulations()
+    {
+        return $this->belongsToMany(Regulation::class, 'service_regulations');
+    }
 }
