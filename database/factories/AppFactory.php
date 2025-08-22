@@ -17,7 +17,10 @@ class AppFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->unique()->company(),
+            'url' => fake()->url(),
+            'description' => fake()->sentence(),
+            'icon' => fake()->imageUrl(),
         ];
     }
 }

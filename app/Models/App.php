@@ -9,4 +9,17 @@ class App extends Model
 {
     /** @use HasFactory<\Database\Factories\AppFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'url',
+        'description',
+        'icon',
+        'department_id',
+    ];
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
 }

@@ -22,4 +22,29 @@ class Department extends Model
         'youtube',
         'linkedin',
     ];
+
+    public function apps()
+    {
+        return $this->hasMany(App::class);
+    }
+
+    public function services()
+    {
+        return $this->hasMany(Service::class);
+    }
+
+    public function regulations()
+    {
+        return $this->hasMany(Regulation::class);
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function supplyChains()
+    {
+        return $this->hasMany(SupplyChain::class);
+    }
 }

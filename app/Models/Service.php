@@ -9,4 +9,20 @@ class Service extends Model
 {
     /** @use HasFactory<\Database\Factories\ServiceFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'description',
+        'department_id',
+    ];
+
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+
+    public function supplyChains()
+    {
+        return $this->hasMany(SupplyChain::class);
+    }
 }

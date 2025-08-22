@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('announcements', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('content');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('department_id')->constrained()->onDelete('cascade');
+            $table->string('status')->default('DRAFT');
+            $table->date('start_date');
+            $table->date('end_date')->nullable();
+            $table->string('url')->nullable();
             $table->timestamps();
         });
     }

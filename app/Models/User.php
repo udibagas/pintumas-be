@@ -62,4 +62,19 @@ class User extends Authenticatable
     {
         return $this->role === 'MODERATOR';
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function regulations()
+    {
+        return $this->hasMany(Regulation::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
