@@ -22,7 +22,11 @@ class StoreSupplyChainRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'created_by' => 'required|exists:users,id',
+            'department_id' => 'required|exists:departments,id',
+            'service_id' => 'required|exists:services,id'
         ];
     }
 }

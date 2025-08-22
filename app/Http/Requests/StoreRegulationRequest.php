@@ -22,7 +22,14 @@ class StoreRegulationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+            'user_id' => 'required|exists:users,id',
+            'department_id' => 'required|exists:departments,id',
+            'status' => 'required|in:draft,published',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date',
+            'url' => 'nullable|url'
         ];
     }
 }
